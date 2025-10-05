@@ -33,6 +33,30 @@ The **Commoniety App** follows a modular, service-oriented architecture divided 
 
 ## 3. API Design
 - RESTful endpoints with clear resource naming:
+- - Authentication: JWT tokens stored securely in Flutter’s secure storage.
+- Validation: Middleware for input validation and permission checks.
 
-## 4. Payment Integration
-- Use of Flutterwave virtual accounts for account creation and transaction execution:
+---
+
+## 4. Integrations
+| Service | Purpose |
+|----------|----------|
+| **Flutterwave** | Payment processing and virtual wallet creation |
+| **Firebase Cloud Messaging (FCM)** | Push notifications |
+| **Cloudinary / S3** | Image and document storage |
+
+---
+
+## 5. Security
+- End-to-end encrypted transactions  
+- HTTPS across all API calls  
+- JWT with refresh token strategy  
+- Encrypted PIN and password storage  
+- Role-based access for community admins  
+
+---
+
+## 6. Scalability Plan
+- Microservices separation for wallet, community, and payments modules.
+- WebSocket or CM for real-time notifications.
+
