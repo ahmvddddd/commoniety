@@ -1,7 +1,7 @@
 # Product Overview
 
 ## 1. Introduction
-**Commoniety** is a digital wallet and social funding platform that enables users, groups, and organizations to create **virtual accounts** for receiving contributions, managing community projects, and coordinating group finances — all from a single, secure mobile app.
+**Community Wallet** is a digital wallet and social funding platform that enables users, groups, and organizations to create **virtual accounts** for receiving contributions, managing community projects, and coordinating group finances — all from a single, secure mobile app.
 
 Users can:
 - Create or join communities (e.g., alumni groups, NGOs, project teams)
