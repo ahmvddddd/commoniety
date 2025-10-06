@@ -1,7 +1,7 @@
 # Technical Architecture
 
 ## 1. Overview
-The **Commoniety App** follows a modular, service-oriented architecture divided into:
+**Community Wallet** follows a modular, service-oriented architecture divided into:
 - **Backend (Node.js + Express + PostgreSQL)**  
 - **Mobile Frontend (Flutter + Riverpod)** 
 
