@@ -1,4 +1,4 @@
-# Community Wallet App
+# Commoniety
 
 A modern **mobile wallet and social funding platform** that empowers individuals, alumni groups, and communities to **collect, manage, and transparently track funds** for shared goals — all in one secure, connected space.
 
@@ -6,7 +6,7 @@ A modern **mobile wallet and social funding platform** that empowers individuals
 
 ## Overview
 
-The **Community Wallet App** combines the simplicity of a digital wallet with the connectivity of a social network.  
+**Commoniety** combines the simplicity of a digital wallet with the connectivity of a social network.  
 Users can create **virtual accounts** for purposes such as:
 - Crowdfunding campaigns  
 - Alumni dues and reunions  
@@ -29,7 +29,7 @@ Contributors can fund these virtual accounts easily while staying updated on pro
 ---
 
 ## Project Structure
-community-wallet-app/
+commoniety/
 ├── README.md # Project summary + quick start
 ├── docs/ # Documentation and planning
 │ ├── 01_product_overview.md
