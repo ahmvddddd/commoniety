@@ -1,4 +1,4 @@
-# Commoniety
+# Community Wallet
 
 A modern **mobile wallet and social funding platform** that empowers individuals, alumni groups, and communities to **collect, manage, and transparently track funds** for shared goals — all in one secure, connected space.
 
@@ -6,7 +6,7 @@ A modern **mobile wallet and social funding platform** that empowers individuals
 
 ## Overview
 
-**Commoniety** combines the simplicity of a digital wallet with the connectivity of a social network.  
+**Community Wallet** combines the simplicity of a digital wallet with the connectivity of a social network.  
 Users can create **virtual accounts** for purposes such as:
 - Crowdfunding campaigns  
 - Alumni dues and reunions  
@@ -25,27 +25,6 @@ Contributors can fund these virtual accounts easily while staying updated on pro
 - **Transaction History** — Transparent, real-time tracking of inflows and outflows.  
 - **Notifications** — Updates for contributions, milestones, and fund goals.  
 - **Multi-Platform Access** — Built with Flutter for Android, iOS, and Web.
-
----
-
-## Project Structure
-commoniety/
-├── README.md # Project summary + quick start
-├── docs/ # Documentation and planning
-│ ├── 01_product_overview.md
-│ ├── 02_mvp_user_flows.md
-│ ├── 03_technical_architecture.md
-│ ├── 04_data_models.md
-├── backend/ # Node.js backend (APIs, payments, DB)
-│ ├── src/
-│ ├── package.json
-│ └── ...
-├── mobile/ # Flutter mobile frontend
-│ ├── lib/
-│ ├── pubspec.yaml
-│ └── ...
-└── .env.example # Environment variable template
-
 
 ---
 
