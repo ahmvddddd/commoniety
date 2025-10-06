@@ -6,8 +6,6 @@
 Users can:
 - Create or join communities (e.g., alumni groups, NGOs, project teams)
 - Generate virtual accounts for crowdfunding and community initiatives
-- Contribute securely using various payment methods
-- Track funds, goals, and transactions transparently
 
 ---
 
@@ -20,8 +18,6 @@ Communities often rely on induvidual bank accounts to collect and track funds �
 Community Wallet solves this by:
 - Providing  **virtual accounts** for every community.
 - Enabling **transparent contribution tracking** and **member accountability**.
-- Supporting **secure payments** and **automatic reconciliation**.
-- Fostering **collaboration** via shared community goals and milestones.
 
 ---
 
@@ -32,14 +28,14 @@ Community Wallet solves this by:
 
 ---
 
-## 5. Core Features (MVP)
-1. User registration and secure login  
-2. Wallet creation and balance tracking  
-3. Virtual account setup for crowdfunding goals  
-4. Secure payment processing  
-5. Transaction history and reporting  
-6. Community creation and member management  
-7. Notifications and contribution summaries  
+## 5. Core Features (Phase 1)
+
+✅ Group creation & member roles  
+✅ Virtual group wallet (with mock/sandbox account numbers)  
+✅ Contributions & balance updates  
+✅ Withdrawal requests with officer approvals  
+✅ In-app notifications for key actions  
+✅ Transparent transaction history (MVP-level)
 
 ---
 
