@@ -1,6 +1,6 @@
 # Community Wallet
 
-A modern **mobile wallet and social funding platform** that empowers individuals, alumni groups, and communities to **collect, manage, and transparently track funds** for shared goals — all in one secure, connected space.
+A rules-based group wallet system that allows communities, alumni groups, and associations to collect funds, track contributions, and approve withdrawals transparently.
 
 ---
 
@@ -16,15 +16,24 @@ Contributors can fund these virtual accounts easily while staying updated on pro
 
 ---
 
-## Core Features (MVP)
+## MVP Scope (Phase 1)
 
-- **User Authentication** — Secure sign-up and login (email and password).  
-- **Community Creation** — Build or join funding circles and manage members.  
-- **Virtual Wallets** — Each user and community has a unique wallet address.  
-- **Contributions** — Receive funds from members or external donors.  
-- **Transaction History** — Transparent, real-time tracking of inflows and outflows.  
-- **Notifications** — Updates for contributions, milestones, and fund goals.  
-- **Multi-Platform Access** — Built with Flutter for Android, iOS, and Web.
+The first version of Community Wallet will focus only on three core user flows:
+
+1️⃣ **Create Group & Invite Members**  
+- Roles: Owner, Treasurer, Member  
+- Set group rules (default templates only)
+
+2️⃣ **Contribute to Group Wallet**  
+- Each group gets a virtual account (mock/sandbox for MVP)  
+- Members can make deposits  
+- Balance updates in real time
+
+3️⃣ **Withdrawal with Approval**  
+- Treasurer or Owner requests withdrawal  
+- Officers (not all members) approve  
+- Payout triggered after required approvals  
+- Notifications for each step
 
 ---
 
