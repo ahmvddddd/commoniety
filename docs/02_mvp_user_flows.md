@@ -1,52 +1,34 @@
 # MVP User Flows
 
-## Overview
-This document outlines how users interact with the app in the **Minimum Viable Product (MVP)** version. It defines the primary flows that must exist before public launch.
+This document defines the only three user flows that will be implemented in Phase 1.
 
 ---
 
-## 1. Onboarding Flow
-1. User downloads and opens the app.
-2. User signs up using email and password.
-3. User enters their BVN for KYC. 
-4. System prompts user to set up a **PIN** for wallet access.
-5. User lands on the **home screen** showing community overview.
+## 1. Create Group & Invite Members
+**Actor:** Group Owner (or any registered user)
+1. User signs up or logs in (email + password only).2. User taps **“Create Group”**.3. Enters group name and optional description.4. Default rule template is applied (no custom settings in MVP).5. System generates a unique **Group ID or Join Code**.6. User invites others via link or code.
+_No BVN, PIN or KYC for MVP._
 
 ---
 
-## 2. Create Community Fund Flow
-1. User taps **“Create Community”**.
-2. Enters community name, goal, and description.
-3. App generates a **virtual account number**.
-4. User shares the account link or account number to collect contributions.
+## 2. Contribute to Group Wallet
+**Actor:** Group Member
+### Mock Mode (MVP)1. Member opens a group they belong to.2. App displays a **demo virtual account number** (e.g. `VA-DEMO-{groupId}`).3. Member taps **“Contribute (Demo)”**, enters amount and submits.4. Backend creates a **ledger credit** with:   - amountKobo, currency, groupId, memberId   - source = `"demo"`   - simulated = `true`5. Group balance updates immediately.6. Officers and contributor receive notification.
+### Sandbox Mode (Later Phase)Same flow, but via webhook from provider sandbox.
 
 ---
 
-## 3. Contribute to a Fund Flow
-1. User selects a community fund.
-2. Enters contribution amount.
-3. Selects transfer funds to the community account.
-4. System processes the transaction and updates the community wallet balance.
-5. Both contributor and admin receive a success notification.
+## 3. Withdrawal with Approval
+**Actors:** Treasurer or Owner (request), Officers (approve)
+1. Treasurer/Owner initiates withdrawal (amount + reason).2. Officers receive notification to approve.3. Approvals follow default template (e.g. 2 officers).4. Once approval threshold is met:   - System marks as approved   - Mock/sandbox payout is triggered5. Transaction is recorded in ledger.6. Notifications sent to relevant members.
 
 ---
 
-## 4. Withdraw or Use Funds Flow
-1. Admin navigates to the fund dashboard.
-2. Chooses “Withdraw” and community members receive notification asking for approval.
-3. Admin awaits community approval.
-4. Backend validates approvals, permissions and balance.
-5. Funds are transferred securely.
+## Notifications (MVP Only)
+These events trigger in-app notifications:
+- Deposit received  - Withdrawal requested  - Approval added  - Payout completed  - Request expired or rejected (optional)
 
 ---
 
-## 5. Notification Flow
-- Contributors receive updates for successful payments.
-- Community admins get alerts for new contributions and fund milestones.
-- Users are notified when goals are achieved or withdrawals are made.
-
----
-
-## 6. Logout / Re-login Flow
-- User logs out securely.
-- Upon next login, the user must re-enter password.
+## Out of Scope (Phase 1)
+ No BVN / NIN / PIN   No goals or milestones   No bill payments or loans   No personal wallets   No chat features
