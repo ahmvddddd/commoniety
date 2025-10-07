@@ -58,7 +58,8 @@ These entities support the MVP user flows.
 - currency ("NGN")
 - source ("demo" | "provider_sandbox" | "payout")
 - reference (string, unique)
-- simulated (boolean) createdAt
+- simulated (boolean)
+- createdAt
 
 ---
 
