@@ -1,43 +1,17 @@
-# Product Overview
-
-## 1. Introduction
-**Community Wallet** is a digital wallet and social funding platform that enables users, groups, and organizations to create **virtual accounts** for receiving contributions, managing community projects, and coordinating group finances — all from a single, secure mobile app.
-
-Users can:
-- Create or join communities (e.g., alumni groups, NGOs, project teams)
-- Generate virtual accounts for crowdfunding and community initiatives
+# Overview
 
 ---
 
-## 2. Problem Statement
-Communities often rely on induvidual bank accounts to collect and track funds — which leads to confusion, lack of transparency, and delayed execution of community projects.
+## Community Wallet enables groups to pool funds in a shared virtual account with transparency and controlled withdrawals.  
+It is designed for communities such as alumni associations, cooperatives, religious groups, and project-based teams.
 
 ---
 
-## 3. Solution
-Community Wallet solves this by:
-- Providing  **virtual accounts** for every community.
-- Enabling **transparent contribution tracking** and **member accountability**.
+## Instead of building many features at once, Phase 1 focuses only on:
+- Creating a group with member roles
+- Accepting contributions into a shared wallet
+- Approving withdrawals using basic rule templates
 
 ---
 
-## 4. Target Users
-- **Community Leaders / Admins:** Manage and distribute funds.
-- **Members / Donors:** Contribute easily and track fund usage.
-- **Organizations:** Run fundraising campaigns or alumni drives.
-
----
-
-## 5. Core Features (Phase 1)
-
-✅ Group creation & member roles  
-✅ Virtual group wallet (with mock/sandbox account numbers)  
-✅ Contributions & balance updates  
-✅ Withdrawal requests with officer approvals  
-✅ In-app notifications for key actions  
-✅ Transparent transaction history (MVP-level)
-
----
-
-## 6. Long-Term Vision
-To become the go-to **digital trust platform** for managing community funds — merging social connection with transparent financial collaboration.
+### Custom goals, campaigns, milestones, and advanced community features will come in later phases.
