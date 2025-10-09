@@ -1,0 +1,89 @@
+
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- 1. user
+CREATE TABLE IF NOT EXISTS "user" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    name TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
+
+-- 2. group
+CREATE TABLE IF NOT EXISTS "group" (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL,
+    description TEXT,
+    rule_template TEXT,
+    approvals_required INT CHECK (approvals_required >= 0),
+    approvals_cap INT CHECK (approvals_cap >= 0),
+    created_by UUID NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
+
+-- 3. group_membership
+CREATE TABLE IF NOT EXISTS group_membership (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    group_id UUID NOT NULL REFERENCES "group"(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    role_in_group TEXT NOT NULL CHECK (role_in_group IN ('OWNER', 'TREASURER', 'MEMBER')),
+    joined_at TIMESTAMP DEFAULT now() NOT NULL,
+    UNIQUE (group_id, user_id)
+);
+
+-- 4. account (group wallet)
+CREATE TABLE IF NOT EXISTS account (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    group_id UUID NOT NULL REFERENCES "group"(id) ON DELETE CASCADE,
+    virtual_account_number TEXT NOT NULL,
+    provider_ref TEXT,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
+
+-- 5. ledger_entry
+CREATE TABLE IF NOT EXISTS ledger_entry (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    group_id UUID NOT NULL REFERENCES "group"(id) ON DELETE CASCADE,
+    account_id UUID NOT NULL REFERENCES account(id) ON DELETE CASCADE,
+    type TEXT NOT NULL CHECK (type IN ('CREDIT', 'DEBIT')),
+    amount_kobo INT NOT NULL CHECK (amount_kobo >= 0),
+    currency TEXT NOT NULL DEFAULT 'NGN' CHECK (currency = 'NGN'),
+    source TEXT CHECK (source IN ('demo', 'provider_sandbox', 'payout')),
+    reference TEXT UNIQUE NOT NULL,
+    simulated BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
+
+-- 6. withdrawal_request
+CREATE TABLE IF NOT EXISTS withdrawal_request (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    group_id UUID NOT NULL REFERENCES "group"(id) ON DELETE CASCADE,
+    amount_kobo INT NOT NULL CHECK (amount_kobo > 0),
+    beneficiary JSONB NOT NULL,
+    reason TEXT,
+    status TEXT NOT NULL CHECK (status IN ('PENDING', 'APPROVED', 'REJECTED', 'EXPIRED')),
+    requested_by UUID NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    expires_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
+
+-- 7. approval
+CREATE TABLE IF NOT EXISTS approval (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    withdrawal_id UUID NOT NULL REFERENCES withdrawal_request(id) ON DELETE CASCADE,
+    approver_user_id UUID NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT now() NOT NULL,
+    UNIQUE (withdrawal_id, approver_user_id)
+);
+
+-- 8. webhook_event (placeholder)
+CREATE TABLE IF NOT EXISTS webhook_event (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    event_type TEXT NOT NULL,
+    raw_payload JSONB NOT NULL,
+    processed BOOLEAN DEFAULT FALSE,
+    processed_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT now() NOT NULL
+);
