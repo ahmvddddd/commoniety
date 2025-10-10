@@ -87,3 +87,34 @@ CREATE TABLE IF NOT EXISTS webhook_event (
     processed_at TIMESTAMP,
     created_at TIMESTAMP DEFAULT now() NOT NULL
 );
+
+-- 9. Tweaks and fixes
+
+-- a) Tighten group rule fields
+ALTER TABLE "group"
+  ALTER COLUMN rule_template SET DEFAULT 'two_officer',
+  ALTER COLUMN approvals_required SET DEFAULT 2,
+  ALTER COLUMN approvals_cap SET DEFAULT 3;
+
+ALTER TABLE "group"
+  ADD CONSTRAINT chk_group_approvals_required CHECK (approvals_required >= 1),
+  ADD CONSTRAINT chk_group_approvals_cap CHECK (approvals_cap IS NULL OR approvals_cap >= approvals_required);
+
+-- b) Ensure VA numbers are unique
+ALTER TABLE account
+  ADD CONSTRAINT uq_account_virtual_account UNIQUE (virtual_account_number);
+
+-- c) Add contributor to ledger (nullable)
+ALTER TABLE ledger_entry
+  ADD COLUMN user_id UUID NULL REFERENCES "user"(id);
+
+-- d) A few pragmatic indexes
+CREATE INDEX idx_le_group ON ledger_entry(group_id);
+CREATE INDEX idx_le_group_type ON ledger_entry(group_id, type);
+CREATE INDEX idx_wr_group_status ON withdrawal_request(group_id, status);
+CREATE INDEX idx_gm_group ON group_membership(group_id);
+
+-- e) Nice-to-have defaults
+ALTER TABLE withdrawal_request
+  ALTER COLUMN status SET DEFAULT 'PENDING';
+
