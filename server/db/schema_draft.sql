@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS "group" (
     name TEXT NOT NULL,
     description TEXT,
     rule_template TEXT,
-    approvals_required INT CHECK (approvals_required >= 0),
-    approvals_cap INT CHECK (approvals_cap >= 0),
+    approvals_required INT,
+    approvals_cap INT,
     created_by UUID NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT now() NOT NULL
 );
@@ -122,19 +122,24 @@ ALTER TABLE withdrawal_request
 -- Derived balance per group wallet (CREDIT - DEBIT)
 CREATE OR REPLACE VIEW vw_group_balance AS
 SELECT
-  group_id,
-  SUM(CASE WHEN type='CREDIT' THEN amount_kobo ELSE -amount_kobo END) AS balance_kobo
-FROM ledger_entry
-GROUP BY group_id;
+  g.id AS group_id,
+  COALESCE(SUM(CASE WHEN le.type='CREDIT' THEN le.amount_kobo ELSE -le.amount_kobo END), 0) AS balance_kobo
+FROM "group" g
+LEFT JOIN ledger_entry le ON le.group_id = g.id
+GROUP BY g.id;
+
 
 -- *View: Member Contribution Totals (only when user_id exists)*
 
 -- Total contributions per member per group
 CREATE OR REPLACE VIEW vw_member_contributions AS
 SELECT
-  group_id,
-  user_id,
-  SUM(CASE WHEN type='CREDIT' THEN amount_kobo ELSE 0 END) AS total_contributed_kobo
-FROM ledger_entry
-WHERE user_id IS NOT NULL
-GROUP BY group_id, user_id;
+  le.group_id,
+  le.user_id,
+  COALESCE(SUM(CASE WHEN le.type='CREDIT' THEN le.amount_kobo ELSE 0 END), 0) AS total_contributed_kobo
+FROM ledger_entry le
+WHERE le.user_id IS NOT NULL
+GROUP BY le.group_id, le.user_id;
+
+-- *Add one more practical index*
+CREATE INDEX idx_account_group ON account(group_id);
