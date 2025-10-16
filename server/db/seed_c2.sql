@@ -49,3 +49,9 @@ SELECT * FROM vw_member_contributions ORDER BY group_id, user_id;
 [13/10, 08:43] Mamoh Bello: Run it:
 
 -- psql -d community_wallet -f server/db/seed_c2.sql
+
+-- Results
+| group_id                             | user_id                              | total_contributed_kobo |
+| ------------------------------------ | ------------------------------------ | ---------------------- |
+| 09e7a2ad-25c4-4820-9dbc-35439a133b8e | 40385fa1-4d2f-4116-800b-da941a4bf8c9 | 2500000                |
+| 09e7a2ad-25c4-4820-9dbc-35439a133b8e | 9898960e-af02-4838-b877-3478a4119018 | 5000000                |
