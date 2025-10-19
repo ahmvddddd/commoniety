@@ -46,7 +46,6 @@ SELECT * FROM vw_group_balance;
 
 -- Member contributions (should show both users and their totals)
 SELECT * FROM vw_member_contributions ORDER BY group_id, user_id;
-[13/10, 08:43] Mamoh Bello: Run it:
 
 -- psql -d community_wallet -f server/db/seed_c2.sql
 
