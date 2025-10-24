@@ -70,6 +70,7 @@ The first version of Community Wallet will focus only on three core user flows:
 
 ## Environment Variables
 
+
 All sensitive keys and credentials are managed via an `.env` file.  
 To set up your environment, copy `.env.example` into a new `.env` file:
 
