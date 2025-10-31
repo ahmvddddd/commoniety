@@ -76,4 +76,3 @@ To set up your environment, copy `.env.example` into a new `.env` file:
 
 ```bash
 cp .env.example .env
-
